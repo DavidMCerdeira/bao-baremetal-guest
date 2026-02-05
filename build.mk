@@ -20,8 +20,8 @@ cc=$(CROSS_COMPILE)gcc
 objcopy=$(CROSS_COMPILE)objcopy
 objdump=$(CROSS_COMPILE)objdump
 
-OPT_LEVEL = 2
-DEBUG_LEVEL = 3
+OPT_LEVEL = g
+DEBUG_LEVEL =  
 
 debug_flags:= -g$(DEBUG_LEVEL) $(arch_debug_flags) $(platform_debug_flags)
 GENERIC_FLAGS = $(ARCH_GENERIC_FLAGS) -O$(OPT_LEVEL) $(debug_flags) -static
@@ -80,7 +80,7 @@ $(target).bin: $(target).elf
 	$(objcopy) -O binary $< $@
 
 $(target).elf: $(objs) $(gen_ld_file)
-	$(cc) $(LDFLAGS) -T$(gen_ld_file) $(objs) -o $@
+	$(cc)  -T$(gen_ld_file) $(objs) $(LDFLAGS) -o $@
 	$(objcopy) -O ihex $@ $(target).hex
 	$(objdump) -S $@ > $(target).asm
 	$(objdump) -x -d --wide $@ > $(target).lst

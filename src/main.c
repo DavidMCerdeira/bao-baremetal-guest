@@ -24,6 +24,7 @@
 #include <irq.h>
 #include <uart.h>
 #include <timer.h>
+#include <math.h>
 
 #define TIMER_INTERVAL (TIME_S(1))
 
